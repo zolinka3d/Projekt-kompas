@@ -19,7 +19,7 @@ Program pozwala na ominięcie pierwszych możliwie błędnych linijek danych ką
 ![image](https://user-images.githubusercontent.com/84075025/122969258-bb86fc00-d38c-11eb-8ab8-2ab68b1e89c8.png)
 
 Po wciśnięciu przycisku generuje się powoli wykres. W danym czasie jak pokazane są dane na wykresie, takie dane wykorzystuje program do obliczania, w jakim położeniu powinna być wskazówka na kompasie.
-Jest równiez możliwość skalowania wykresu na bieżąco w osi X i Y. Wystarczy nacisnąć których z przycisków "+" bądź "-". 
+Jest równiez możliwość skalowania wykresu na bieżąco w osi X i Y. Wystarczy nacisnąć jeden z przycisków "+" bądź "-". 
 ![image](https://user-images.githubusercontent.com/84075025/122969835-68fa0f80-d38d-11eb-8f7f-e243e815cc43.png)
 
 NAJWAŻNIESZE CZĘŚCI KODU:
