@@ -2,7 +2,7 @@ WSTĘP :
 Mieliśmy za zadanie zrobić projekt, który pobiera dane kątowe z pierwszych dwóch kolumn - pitch i roll - z pliku "outputCatapult01". Funckcja odpowiedzialna za pobranie danych :
 ![image](https://user-images.githubusercontent.com/84075025/122968267-a5c50700-d38b-11eb-8e26-95e822a3b375.png)
 
-Przedstawić te dane na wykresie w stworzonej przeze mnie aplikacji w Win Api w języku programowania cpp. Program pokazuje również kompas.
+Przedstawić te dane na wykresie w stworzonej przeze nas aplikacji w Win Api w języku programowania cpp. Program pokazuje również kompas.
 ![image](https://user-images.githubusercontent.com/84075025/122967958-51ba2280-d38b-11eb-93c2-36dcac725cb1.png)
 
 Pobrane dane zapisuje i podstawia do wzoru matematycznego, który określa położenie wskazówki na kompasie.
@@ -29,7 +29,7 @@ Tekst edit jest odpowiedzialny za wczytanie liczb wpisanych przez użytkownika. 
 W tym momencie program pobiera tekst i przerabia go z "chara" na "inta", by móc odjąć go od pierwszych linijek pobranych z pliku. Również odpalany jest timer zaczynający rysowanie kompasu i wykresów.
 ![image](https://user-images.githubusercontent.com/84075025/122970471-461c2b00-d38e-11eb-806d-1779f9161c61.png)
 
-Moją wisienką na torcie jest funckja, która odpala się po odpaleniu timera. Wczytuje ona funkcje rysowania:
+Naszą wisienką na torcie jest funckja, która odpala się po odpaleniu timera. Wczytuje ona funkcje rysowania:
 ![image](https://user-images.githubusercontent.com/84075025/122970765-95625b80-d38e-11eb-86ac-370ccdfc10f6.png)
 
 Ważnym elementem jest też druga funckja rysująca. Jej zadaniem jest wymazywanie pierwszego narysowanego wykresu, by móc do woli skalować nowo postałe
