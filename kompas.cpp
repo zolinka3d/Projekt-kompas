@@ -13,9 +13,9 @@ double y = 3;
 
 MSG Komunikat;
 
-#define idTimer 100
-#define time_stamp 100
-#define idTimer54 100
+#define idTimer 10
+#define time_stamp 10
+#define idTimer54 10
 
 HWND hile;
 
@@ -71,7 +71,7 @@ LRESULT CALLBACK OkiennaProc( HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam 
 int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow )
 {
    
-    // WYPE£NIANIE STRUKTURY
+    // WYPE≈ÅNIANIE STRUKTURY
     WNDCLASSEX okno;
    
     okno.cbSize = sizeof( WNDCLASSEX );
@@ -91,7 +91,7 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
     // REJESTROWANIE KLASY OKNA
     if( !RegisterClassEx( & okno ) )
     {
-        MessageBox( NULL, "B≥πd!", "Niestety...",
+        MessageBox( NULL, "B≈ÇƒÖd!", "Niestety...",
         MB_ICONEXCLAMATION | MB_OK );
         return 1;
     }
@@ -112,7 +112,7 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
 		hile =  CreateWindowEx(0, "EDIT", NULL, WS_CHILD | WS_VISIBLE |
 	SS_CENTER , 50, 550, 100, 30, hwnd, NULL, hInstance, NULL);  
 
-	//WYåWIETLANIE PRZYCISK”W
+	//WY≈öWIETLANIE PRZYCISK√ìW
   	h54Przycisk = CreateWindowEx( 0, "BUTTON", "WYGENERUJ", WS_CHILD | WS_VISIBLE,
 		250, 550, 100, 30, hwnd, NULL, hInstance, NULL );
 	
@@ -131,14 +131,14 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
 
     if( hwnd == NULL )
     {
-        MessageBox( NULL, "B≥πd w generowaniu okna", "No cÛø...", MB_ICONEXCLAMATION );
+        MessageBox( NULL, "B≈ÇƒÖd w generowaniu okna", "No c√≥≈º...", MB_ICONEXCLAMATION );
         return 1;
     }
    
-    ShowWindow( hwnd, nCmdShow ); // Pokaø okienko...
+    ShowWindow( hwnd, nCmdShow ); // Poka≈º okienko...
     UpdateWindow( hwnd );
    
-    // PÍtla komunikatÛw
+    // Pƒôtla komunikat√≥w
     while( GetMessage( & Komunikat, NULL, 0, 0 ) )
     {
         TranslateMessage( & Komunikat );
@@ -162,15 +162,40 @@ void rysowanie(double xx, double yy, HDC hdc,  int ile2  )
 		}
 }
 void rysowanie2(double xx, double yy, HDC hdc,  int ile2, int a  )
-{
-	      	   
-        	MoveToEx(hdc,a*xx+32,200+ yy*pitch[a],0); 
-			LineTo(hdc,(xx*(a+1)+32),200+yy* pitch[a+1]);
+{	
+	HPEN PenBlue, PenGrey, PenBlack, PenNice;
+    PenBlue = CreatePen( PS_SOLID, 2, 0xFF8000 );
+    PenGrey = CreatePen( PS_SOLID, 2, 0x606060 );
+    PenBlack = CreatePen( PS_SOLID, 2, 0x00000 );
+    PenNice = CreatePen( PS_SOLID, 7, 0x654321 );
+    HPEN hPenOld;
+	HPEN hEllipsePen;
+	COLORREF qEllipseColor;
+	qEllipseColor = RGB(128,0,128);
+	hEllipsePen = CreatePen (PS_SOLID, 5 , qEllipseColor);
+	hPenOld = (HPEN) SelectObject (hdc,hEllipsePen);
+    
+	    for(int i = 0; i < 625 - ile2; i++)
+		{
+		  if(i<a)
+		  {
+		  	SelectObject( hdc, PenBlue );
+		  }
+		  else SelectObject( hdc, PenGrey );
+		  
+        	MoveToEx(hdc,i*xx+32,200+ yy*pitch[i],0); 
+			LineTo(hdc,(xx*(i+1)+32),200+yy* pitch[i+1]);
     	
         
-        	MoveToEx(hdc,a*xx+32,200+ yy*( roll[a]),0); 
-			LineTo(hdc,(xx*(a+1)+32),200+yy*( roll[a+1]));	
-		
+        	MoveToEx(hdc,i*xx+32,200+ yy*( roll[i]),0); 
+			LineTo(hdc,(xx*(i+1)+32),200+yy*( roll[i+1]));	
+			
+			SelectObject( hdc, PenBlack );
+				MoveToEx(hdc,0,200,0); 
+			LineTo(hdc,800,200);
+			SelectObject( hdc, PenNice );
+        Arc(hdc, 590, 300,790, 500, 0, 0,0,0 );
+		}
 }
 
 void rysowanie_wskazowki(HDC hdc, int ile2, int a)
@@ -221,7 +246,7 @@ void CALLBACK timer(HWND hwnd, UINT message, UINT timer_id, DWORD dwTime){
 	                  break;
     }
 }
-// OBS£UGA ZDARZE—
+// OBS≈ÅUGA ZDARZE≈É
 LRESULT CALLBACK OkiennaProc( HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam )
 {
 	HDC hdc;
@@ -273,8 +298,7 @@ LRESULT CALLBACK OkiennaProc( HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam 
     	rysowanie( x, y, hdc,  ile2 );
     	y = 2*y;
     	SelectObject( hdc, PenBlack );
-    	MoveToEx(hdc,0,200,0); 
-			LineTo(hdc,800,200);
+    
 		
 		SetTimer(hwnd, idTimer54, time_stamp , (TIMERPROC) timer);
 		
@@ -287,8 +311,7 @@ LRESULT CALLBACK OkiennaProc( HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam 
     	rysowanie( x, y, hdc,  ile2 );
     	y = y/2;
     	SelectObject( hdc, PenBlack );
-    	MoveToEx(hdc,0,200,0); 
-		LineTo(hdc,800,200);
+    	
 		SetTimer(hwnd, idTimer54, time_stamp , (TIMERPROC) timer);
 		
 		
@@ -299,8 +322,7 @@ LRESULT CALLBACK OkiennaProc( HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam 
     	rysowanie( x, y, hdc,  ile2);
     	x = x/2;
     	SelectObject( hdc, PenBlack );
-    	MoveToEx(hdc,0,200,0); 
-		LineTo(hdc,800,200);
+    	
 		SetTimer(hwnd, idTimer54, time_stamp , (TIMERPROC) timer);
 	
 	}
@@ -311,8 +333,6 @@ LRESULT CALLBACK OkiennaProc( HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam 
     	x = x*2;
     	
     	SelectObject( hdc, PenBlack );
-    	MoveToEx(hdc,0,200,0); 
-			LineTo(hdc,800,200);
 			SetTimer(hwnd, idTimer54, time_stamp , (TIMERPROC) timer);
 		}
    	
@@ -324,16 +344,13 @@ LRESULT CALLBACK OkiennaProc( HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam 
 		break; 
      case WM_PAINT:
      	 hdc = BeginPaint(hwnd,&ps);
-     	 SelectObject( hdc, PenNice );
-        Arc(hdc, 590, 300,790, 500, 0, 0,0,0 );
-        
-       
-        
-        
+     	 	SelectObject( hdc, PenNice );
+         Arc(hdc, 590, 300,790, 500, 0, 0,0,0 );
+               
         SelectObject( hdc, PenBlack );
-			MoveToEx(hdc,30,100,0); //przeniesienie pozycji piÛra na punkt (50,50)
-			LineTo(hdc,30,300); //narysowanie linni do wspÛ≥rzÍdnej (100,100)
-			//w efekcie wywo≥aÒ tych funkcji, narysujemy liniÍ od punktu (50,50) do punktu (100,100)
+			MoveToEx(hdc,30,100,0); //przeniesienie pozycji pi√≥ra na punkt (50,50)
+			LineTo(hdc,30,300); //narysowanie linni do wsp√≥≈Çrzƒôdnej (100,100)
+			//w efekcie wywo≈Ça≈Ñ tych funkcji, narysujemy liniƒô od punktu (50,50) do punktu (100,100)
 			
 			MoveToEx(hdc,0,200,0); 
 			LineTo(hdc,800,200); 
@@ -357,4 +374,3 @@ LRESULT CALLBACK OkiennaProc( HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam 
     return 0;
 }
     
-
