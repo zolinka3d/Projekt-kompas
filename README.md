@@ -1,5 +1,5 @@
 WSTĘP : 
-Miałam za zadanie zrobić projekt, który pobiera dane kątowe z pierwszych dwóch kolumn - pitch i roll - z pliku "outputCatapult01". Funckcja odpowiedzialna za pobranie danych :
+Mieliśmy za zadanie zrobić projekt, który pobiera dane kątowe z pierwszych dwóch kolumn - pitch i roll - z pliku "outputCatapult01". Funckcja odpowiedzialna za pobranie danych :
 ![image](https://user-images.githubusercontent.com/84075025/122968267-a5c50700-d38b-11eb-8e26-95e822a3b375.png)
 
 Przedstawić te dane na wykresie w stworzonej przeze mnie aplikacji w Win Api w języku programowania cpp. Program pokazuje również kompas.
